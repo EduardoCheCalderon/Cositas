@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "918408439465",
-    "project_id": "riot-90588",
-    "storage_bucket": "riot-90588.appspot.com"
+    "project_number": "339155175415",
+    "project_id": "riotsync-27a90",
+    "storage_bucket": "riotsync-27a90.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:918408439465:android:602d4b0e76b74dc0212bb8",
+        "mobilesdk_app_id": "1:339155175415:android:53edd0ed0b269dac6410f2",
         "android_client_info": {
-          "package_name": "com.example.firebase_setup"
+          "package_name": "com.example.riot_sync"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2TRPHcUjlYXnww-CIyeSGzeaofU8UBHE"
+          "current_key": "AIzaSyAjA0Znn4OmxUScjv8ufeaXdjsBLlXTdtc"
         }
       ],
       "services": {

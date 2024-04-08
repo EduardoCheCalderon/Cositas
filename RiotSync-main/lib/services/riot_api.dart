@@ -1,0 +1,3 @@
+class riot_api {
+  
+}
