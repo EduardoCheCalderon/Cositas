@@ -16,3 +16,7 @@ Future<List> getRegistro() async {
 
   return registro;
 }
+
+Future<void> addRegistro(String name) async {
+  await db.collection("registro").add({"name": name});
+}

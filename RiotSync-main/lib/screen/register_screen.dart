@@ -3,6 +3,7 @@ import 'package:riot_sync/screen/custom_clipper.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:riot_sync/services/firebase_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -101,7 +102,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _buildDateField(dobController),
           const SizedBox(height: 40),
           ElevatedButton(
-            onPressed: _validateAndSubmit,
+            onPressed: () async {
+              await addRegistro(nameController.text).then((_) {
+                Navigator.pop(context);
+              });
+            },
+            // _validateAndSubmit,
             child: const Text("Registrarse"),
           ),
           const SizedBox(height: 20),

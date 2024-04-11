@@ -1,33 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:riot_sync/screen/navbar.dart';
+import 'package:riot_sync/screen/juegos-screen/juegos_screen.dart';
+import 'package:riot_sync/screen/perfil-screen/perfil.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+  int _backButtonCounter = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return WillPopScope(
+      onWillPop: () async {
+        if (_selectedIndex > 0) {
+          _backButtonCounter++;
+          if (_backButtonCounter == 0) {
+            _backButtonCounter = 0;
+            setState(() {
+              _selectedIndex--;
+            });
+            return false;
+          }
+          return false;
+        }
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: IndexedStack(
+          index: _selectedIndex,
           children: [
-            _buildHeader(),
-            const SizedBox(height: 20),
-            _buildNewsCard(
-                'El deseo de un príncipe | Cinemática Deleite Lunar 2024',
-                'League of Legends',
-                'assets/deseo.png',
-                '7 Feb 2024'),
-            const SizedBox(height: 10),
-            _buildArticle('ASÍ LO JUEGO: Pro tips para jugar el Outlaw',
-                'assets/asi_lo_juego_outlaw.png'),
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHeader(),
+                  const SizedBox(height: 20),
+                  _buildNewsCard(
+                      'El deseo de un príncipe | Cinemática Deleite Lunar 2024',
+                      'League of Legends',
+                      'assets/deseo.png',
+                      '7 Feb 2024'),
+                  const SizedBox(height: 10),
+                  _buildArticle('ASÍ LO JUEGO: Pro tips para jugar el Outlaw',
+                      'assets/asi_lo_juego_outlaw.png'),
+                ],
+              ),
+            ),
+            const JuegosScreen(),
+            const PerfilScreen(),
           ],
         ),
-      ),
-      bottomNavigationBar: NavBarScreen(
-        currentIndex: 0,
-        onTap: (int index) {},
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: const Color.fromARGB(255, 35, 35, 35),
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.article),
+              label: 'Noticias',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.games),
+              label: 'Juegos',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Perfil',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+          selectedItemColor: Colors.red,
+          onTap: _onItemTapped,
+          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
+          showUnselectedLabels: true,
+          showSelectedLabels: true,
+          elevation: 0,
+          enableFeedback: false,
+          selectedFontSize: 14,
+          unselectedFontSize: 12,
+          iconSize: 30,
+          selectedIconTheme: const IconThemeData(size: 30),
+          unselectedIconTheme: const IconThemeData(size: 24),
+        ),
       ),
     );
   }

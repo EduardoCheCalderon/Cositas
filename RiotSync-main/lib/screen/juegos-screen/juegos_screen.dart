@@ -4,7 +4,7 @@ class JuegosScreen extends StatefulWidget {
   const JuegosScreen({super.key});
 
   @override
-  _JuegosScreenState createState() => _JuegosScreenState();
+  State<JuegosScreen> createState() => _JuegosScreenState();
 }
 
 class _JuegosScreenState extends State<JuegosScreen> {
@@ -21,11 +21,9 @@ class _JuegosScreenState extends State<JuegosScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text('Juegos'),
-      ),
       body: Column(
         children: [
+          _buildHeader(),
           Expanded(
             child: ListView.builder(
               itemCount: _games.length,
@@ -55,6 +53,32 @@ class _JuegosScreenState extends State<JuegosScreen> {
       ),
     );
   }
+}
+
+Widget _buildHeader() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 40.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'Juegos',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.tune,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 class Game {
