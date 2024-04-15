@@ -20,5 +20,6 @@ class AppRoutes {
     'juegos_screen': (BuildContext context) => const JuegosScreen(),
     'perfil_screen': (BuildContext context) => const PerfilScreen(),
     'add_game_screen': (BuildContext context) => AddGameScreen(),
+    'edit_game_screen': (BuildContext context) => EditGameScreen(),
   };
 }

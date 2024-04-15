@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:riot_sync/services/game_service.dart';
 
-class AddGameScreen extends StatefulWidget {
+class EditGameScreen extends StatefulWidget {
   @override
-  _AddGameScreenState createState() => _AddGameScreenState();
+  _EditGameScreenState createState() => _EditGameScreenState();
 }
 
-class _AddGameScreenState extends State<AddGameScreen> {
+class _EditGameScreenState extends State<EditGameScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -16,7 +16,7 @@ class _AddGameScreenState extends State<AddGameScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Agregar Juego',
+          'Editar Juego',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
