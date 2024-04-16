@@ -8,11 +8,14 @@ class EditGameScreen extends StatefulWidget {
 
 class _EditGameScreenState extends State<EditGameScreen> {
   final _formKey = GlobalKey<FormState>();
+    TextEditingController juegoController = TextEditingController(text: "");
 
   @override
-  TextEditingController juegoController = TextEditingController(text: "");
 
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    juegoController.text = arguments['juego'];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -86,7 +89,8 @@ class _EditGameScreenState extends State<EditGameScreen> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
-                await addJuego(juegoController.text).then((_) {
+                await updateJuego(arguments['uid'], juegoController.text)
+                    .then((_) {
                   Navigator.pop(context);
                 });
               },
@@ -97,7 +101,7 @@ class _EditGameScreenState extends State<EditGameScreen> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              child: const Text('Agregar'),
+              child: const Text('Editar'),
             ),
           ],
         ),

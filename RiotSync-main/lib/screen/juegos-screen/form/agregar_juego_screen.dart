@@ -8,9 +8,9 @@ class AddGameScreen extends StatefulWidget {
 
 class _AddGameScreenState extends State<AddGameScreen> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController juegoController = TextEditingController(text: "");
 
   @override
-  TextEditingController juegoController = TextEditingController(text: "");
 
   Widget build(BuildContext context) {
     return Scaffold(

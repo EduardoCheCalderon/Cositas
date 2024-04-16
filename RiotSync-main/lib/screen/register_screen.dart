@@ -103,10 +103,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(height: 40),
           ElevatedButton(
             onPressed: () async {
-              await addRegistro(nameController.text);
-              await addRegistro(emailController.text);
-              await addRegistro(passwordController.text);
-              await addRegistro(dobController.text);
+              await addRegistro(nameController.text, emailController.text,
+                  passwordController.text, dobController.text);
             },
             // onPressed: _validateAndSubmit,
             child: const Text("Registrarse"),

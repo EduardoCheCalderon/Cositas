@@ -17,9 +17,12 @@ Future<List> getRegistro() async {
   return registro;
 }
 
-Future<void> addRegistro(String name) async {
-  await db.collection("registro").add({"Nombre de usuario": name});
-  // await db.collection("registro").add({"Email": email});
-  // await db.collection("registro").add({"Contraseña": password});
-  // await db.collection("registro").add({"Fecha de Nacimiento": dob});
+Future<void> addRegistro(
+    String name, String email, String password, String dob) async {
+  await db.collection("registro").add({
+    "Nombre de usuario": name,
+    "Email": email,
+    "Contraseña": password,
+    "Fecha de Nacimiento": dob
+  });
 }
